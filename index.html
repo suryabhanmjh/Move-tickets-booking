@@ -77,23 +77,23 @@
     </div>
 
     <script>
-        function handleLogin(event) {
+        const handleLogin = (event) => {
             event.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
             
             // Clear previous errors
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('passwordError').textContent = '';
+            document.querySelector('#emailError').textContent = '';
+            document.querySelector('#passwordError').textContent = '';
 
             // Basic validation
             if (!email) {
-                document.getElementById('emailError').textContent = 'Email is required';
+                document.querySelector('#emailError').textContent = 'Email is required';
                 return false;
             }
             if (!password) {
-                document.getElementById('passwordError').textContent = 'Password is required';
+                document.querySelector('#passwordError').textContent = 'Password is required';
                 return false;
             }
 
@@ -102,12 +102,11 @@
             const user = users.find(u => u.email === email && u.password === password);
 
             if (user) {
-                // Store current user
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 alert('Login successful!');
-                window.location.href = 'dashboard.html'; // Redirect to dashboard
+                window.location.href = 'dashboard.html';
             } else {
-                document.getElementById('emailError').textContent = 'Invalid email or password';
+                document.querySelector('#emailError').textContent = 'Invalid email or password';
                 return false;
             }
         }

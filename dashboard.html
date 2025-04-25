@@ -94,17 +94,17 @@
 
     <script>
         // Check if user is logged in
-        function checkAuth() {
+        const checkAuth = () => {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (!currentUser) {
                 window.location.href = 'index.html';
                 return;
             }
-            document.getElementById('userName').textContent = `Welcome, ${currentUser.name}`;
+            document.querySelector('#userName').textContent = `Welcome, ${currentUser.name}`;
         }
 
         // Handle logout
-        function handleLogout() {
+        const handleLogout = () => {
             localStorage.removeItem('currentUser');
             window.location.href = 'index.html';
         }
@@ -129,8 +129,8 @@
         ];
 
         // Display movies
-        function displayMovies() {
-            const movieGrid = document.getElementById('movieGrid');
+        const displayMovies = () => {
+            const movieGrid = document.querySelector('#movieGrid');
             movies.forEach(movie => {
                 const movieCard = `
                     <div class="movie-card">
@@ -145,13 +145,13 @@
         }
 
         // Book ticket function
-        function bookTicket(movieTitle) {
+        const bookTicket = (movieTitle) => {
             alert(`Booking ticket for ${movieTitle}`);
             // Add booking functionality here
         }
 
         // Initialize dashboard
-        window.onload = function() {
+        window.onload = () => {
             checkAuth();
             displayMovies();
         }

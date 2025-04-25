@@ -87,41 +87,41 @@
     </div>
 
     <script>
-        function handleSignup(event) {
+        const handleSignup = (event) => {
             event.preventDefault();
             
             // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
+            const name = document.querySelector('#name').value;
+            const email = document.querySelector('#email').value;
+            const password = document.querySelector('#password').value;
+            const confirmPassword = document.querySelector('#confirmPassword').value;
             
             // Clear previous errors
-            document.getElementById('nameError').textContent = '';
-            document.getElementById('emailError').textContent = '';
-            document.getElementById('passwordError').textContent = '';
-            document.getElementById('confirmPasswordError').textContent = '';
+            document.querySelector('#nameError').textContent = '';
+            document.querySelector('#emailError').textContent = '';
+            document.querySelector('#passwordError').textContent = '';
+            document.querySelector('#confirmPasswordError').textContent = '';
 
             // Validation
             let hasError = false;
 
             if (!name || name.length < 3) {
-                document.getElementById('nameError').textContent = 'Name must be at least 3 characters';
+                document.querySelector('#nameError').textContent = 'Name must be at least 3 characters';
                 hasError = true;
             }
 
             if (!email || !email.includes('@')) {
-                document.getElementById('emailError').textContent = 'Please enter a valid email';
+                document.querySelector('#emailError').textContent = 'Please enter a valid email';
                 hasError = true;
             }
 
             if (!password || password.length < 6) {
-                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+                document.querySelector('#passwordError').textContent = 'Password must be at least 6 characters';
                 hasError = true;
             }
 
             if (password !== confirmPassword) {
-                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.querySelector('#confirmPasswordError').textContent = 'Passwords do not match';
                 hasError = true;
             }
 
@@ -130,16 +130,12 @@
             // Check if user already exists
             const users = JSON.parse(localStorage.getItem('users') || '[]');
             if (users.find(user => user.email === email)) {
-                document.getElementById('emailError').textContent = 'Email already registered';
+                document.querySelector('#emailError').textContent = 'Email already registered';
                 return false;
             }
 
             // Save user data
-            users.push({
-                name,
-                email,
-                password
-            });
+            users.push({ name, email, password });
             localStorage.setItem('users', JSON.stringify(users));
 
             alert('Registration successful! Please login.');
